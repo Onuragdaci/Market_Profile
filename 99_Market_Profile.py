@@ -1,5 +1,10 @@
-#!pip install MarketProfile
-
+!pip install MarketProfile
+!pip install git+https://github.com/baselsm/tvdatafeed
+!pip install scipy
+!pip install matplotlib
+!pip install mplcyberpunk
+!pip install mplfinance
+!pip install vectorbt
 import pandas as pd
 from urllib import request
 import ssl
@@ -9,7 +14,6 @@ import matplotlib.pyplot as plt
 import mplfinance as mpf
 import mplcyberpunk
 import vectorbt as vbt
-import yfinance as yf
 tv = TvDatafeed()
 
 def Hisse_Temel_Veriler():
