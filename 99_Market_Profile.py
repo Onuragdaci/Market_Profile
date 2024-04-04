@@ -17,11 +17,14 @@ import vectorbt as vbt
 tv = TvDatafeed()
 
 def Hisse_Temel_Veriler():
-    url = "https://www.isyatirim.com.tr/tr-tr/analiz/hisse/Sayfalar/Temel-Degerler-Ve-Oranlar.aspx#page-1"
+    url1="https://www.isyatirim.com.tr/tr-tr/analiz/hisse/Sayfalar/Temel-Degerler-Ve-Oranlar.aspx#page-1"
     context = ssl._create_unverified_context()
-    response = request.urlopen(url, context=context)
-    data = pd.read_html(response.read(), decimal=',', thousands='.')  # Check if this returns the expected table
-    return data
+    response = request.urlopen(url1, context=context)
+    url1 = response.read()
+    df = pd.read_html(url1,decimal=',', thousands='.')                         #Tüm Hisselerin Tablolarını Aktar
+    df=df[6]
+    Hisseler=df['Kod'].values.tolist()
+    return Hisseler
 
 def calculate_market_profile(subset_data):
     mp = MarketProfile(subset_data)
