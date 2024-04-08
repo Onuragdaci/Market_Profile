@@ -78,12 +78,13 @@ for j in range(0, len(Hisseler)):
         data['POC'] = 0
 
         n_bars = 45
-        for i in range(0, len(data), n_bars):
-            subset_data = data.iloc[i:i + n_bars]
+        for i in range(n_bars, len(data), n_bars):
+            subset_data = data.iloc[(i - n_bars):(i-1)]
             VAH, VAL, POC = calculate_market_profile(subset_data)
-            data.loc[i:i + n_bars - 1, 'VAH'] = float(VAH)
-            data.loc[i:i + n_bars - 1, 'VAL'] = float(VAL)
-            data.loc[i:i + n_bars - 1, 'POC'] = float(POC)
+            data.loc[(i - n_bars):(i-1), 'VAH'] = float(VAH)
+            data.loc[(i - n_bars):(i-1), 'VAL'] = float(VAL)
+            data.loc[(i - n_bars):(i-1), 'POC'] = float(POC)
+
 
         data['Entry']=data['Close']<data['VAL']
         data['Exit']=data['Close']>data['VAL']
