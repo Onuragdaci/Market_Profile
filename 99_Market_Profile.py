@@ -87,7 +87,7 @@ for j in range(0, len(Hisseler)):
 
 
         data['Entry']=data['Close']<data['VAL']
-        data['Exit']=data['Close']>data['VAL']
+        data['Exit']=data['Close']>data['VAH']
         psettings = {'init_cash': 100,'freq': 'H', 'direction': 'longonly', 'accumulate': True}
         pf = vbt.Portfolio.from_signals(data['Close'], entries=data['Entry'], exits=data['Exit'],**psettings)
         Stats=pf.stats()
